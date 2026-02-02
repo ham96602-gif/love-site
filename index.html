@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love World</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/sahel-font@v3.4.0/dist/font-face.css" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Sahel';
+  overflow:hidden;
+}
+
+/* ---------- PAGE 1 ---------- */
+#page1{
+  position:relative;
+  height:100vh;
+  background:linear-gradient(135deg,#ff5fa2,#ff9fcf);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* emoji rain (only page 1) */
+.emoji{
+  position:absolute;
+  top:-40px;
+  font-size:22px;
+  opacity:.75;
+  animation:fall linear infinite;
+  z-index:1;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh)}
+}
+
+.login-box{
+  position:relative;
+  z-index:2;
+  width:90%;
+  max-width:360px;
+  background:#fff;
+  padding:30px 22px;
+  border-radius:26px;
+  text-align:center;
+}
+
+.login-box h2{
+  margin-bottom:18px;
+}
+
+.login-box input{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border:none;
+  border-radius:16px;
+  background:#f2f2f2;
+  font-size:14px;
+}
+
+.login-box button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(135deg,#ff5fa2,#ff2f7d);
+  color:#fff;
+  font-size:16px;
+}
+
+.note{
+  margin-top:12px;
+  font-size:12px;
+  line-height:1.7;
+}
+
+/* ---------- PAGE 2 ---------- */
+#page2{
+  display:none;
+  height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
+    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj_CjjMn0TxarjBFLb5gAEpZn-DoziSccw9wKHxxxVsy90LAD9OCQeZME&s=10");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.love-text{
+  margin-top:40px;
+  font-family:'Pacifico';
+  font-size:24px;
+  color:gold;
+  animation:blink 3.5s ease-in-out 5;
+}
+
+@keyframes blink{
+  0%,100%{opacity:1}
+  50%{opacity:.35}
+}
+
+.upload-box{
+  margin-top:28px;
+  width:70%;
+  max-width:260px;
+  padding:16px;
+  font-family:'Lalezar';
+  font-size:24px;
+  color:#fff;
+  background:rgba(255,255,255,.25);
+  border-radius:22px;
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+  text-align:center;
+}
+
+#preview{
+  margin-top:20px;
+  max-width:80%;
+  border-radius:18px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1">
+  <div class="login-box">
+    <h2>Enter the World of Love</h2>
+
+    <input id="n1" inputmode="numeric" placeholder="Your Number">
+    <input id="n2" inputmode="numeric" placeholder="Partner Number">
+
+    <button onclick="check()">Continue</button>
+
+    <div class="note">
+      خوشحالم که دارمت قلبم 🫠🫀<br>
+      بخاطر همین تصمیم گرفتم هرچی خاطره خوبه ازت نگه دارم
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2">
+  <div class="love-text">i love you romina 🥹</div>
+
+  <label class="upload-box">
+    آپلود
+    <input type="file" accept="image/*" hidden onchange="loadImg(event)">
+  </label>
+
+  <img id="preview">
+</div>
+
+<script>
+/* emojis only page 1 */
+const emojis=["🤍","🎀","💍","💋","👑","🥹","🫀"];
+const page1=document.getElementById("page1");
+
+for(let i=0;i<35;i++){
+  const e=document.createElement("div");
+  e.className="emoji";
+  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"%";
+  e.style.animationDuration=(8+Math.random()*6)+"s";
+  page1.appendChild(e);
+}
+
+function check(){
+  if(n1.value.endsWith("0353") && n2.value.endsWith("7908")){
+    page1.style.display="none";
+    page2.style.display="flex";
+  }
+}
+
+function loadImg(e){
+  preview.src=URL.createObjectURL(e.target.files[0]);
+}
+</script>
+
+</body>
+</html>
